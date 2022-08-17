@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoderHouse.PropiedadesModelo;
 
 namespace CoderHouse.ADO.NET
 {
-    public class Ventas : DBHandler
+    public class Ventas : DbHandler
     {
-        public List<Ventas> GetVentas()
+        public List<Venta> GetVentas()
         {
-            List<Ventas> ventas = new List<Ventas>();
+            List<Venta> ventas = new List<Venta>();
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand(
@@ -25,10 +26,10 @@ namespace CoderHouse.ADO.NET
                         {
                             while (dataReader.Read())
                             {
-                                Ventas Venta = new Ventas();
+                                Venta venta = new Venta();
 
-                                Venta.id = Convert.ToInt32(dataReader["Id"]);
-                                Venta.comentarios = dataReader["Comentarios"].ToString();
+                                venta.Id = Convert.ToInt32(dataReader["Id"]);
+                                venta.Comentarios = dataReader["Comentarios"].ToString();
                             }
                         }
                     }

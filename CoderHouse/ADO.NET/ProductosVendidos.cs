@@ -8,7 +8,7 @@ using static CoderHouse.PropiedadesModelo;
 
 namespace CoderHouse.ADO.NET
 {
-    public class ProductosVendido : DBHandler
+    public class ProductosVendido : DbHandler
     {
         public List<ProductoVendido> GetProductosVendidos()
         {
@@ -33,14 +33,15 @@ namespace CoderHouse.ADO.NET
                                 productoVendido.Stock = Convert.ToBoolean(dataReader["Stock"]);
                                 productoVendido.IdProducto = dataReader["IdProducto"].ToString();
                                 productoVendido.IdVenta = dataReader["IdVenta"].ToString();
+                            }
                         }
+
+                        sqlConnection.Close();
                     }
-
-                    sqlConnection.Close();
                 }
-            }
 
-            return ProductoVendido;
+                return ProductoVendido;
+            }
         }
-        
+    }   
 }

@@ -1,43 +1,47 @@
-﻿using CoderHouse.ADO.NET;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using static CoderHouse.PropiedadesModelo;
 
-namespace EjemploDeClase
+namespace CoderHouse.ADO.NET
 {
-    public List<Producto> GetProductos()
+    public class ProductoHandler : DbHandler
     {
-        List<Producto> productos = new List<Producto>();
-        using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+        public List<Producto> GetProductos()
         {
-            using (SqlCommand sqlCommand = new SqlCommand(
-                "SELECT * FROM Producto", sqlConnection))
+            List<Producto> productos = new List<Producto>();
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
-                sqlConnection.Open();
-
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                using (SqlCommand sqlCommand = new SqlCommand(
+                    "SELECT * FROM Producto", sqlConnection))
                 {
-                    // Me aseguro que haya filas que leer
-                    if (dataReader.HasRows)
-                    {
-                        while (dataReader.Read())
-                        {
-                            Producto producto = new Producto();
-                            producto.Id = Convert.ToInt32(dataReader["Id"]);
-                            producto.Stock = Convert.ToInt32(dataReader["Stock"]);
-                            producto.IdUsuario = Convert.ToInt32(dataReader["IdUsuario"]);
-                            producto.Costo = Convert.ToInt32(dataReader["Costo"]);
-                            producto.PrecioVenta = Convert.ToInt32(dataReader["PrecioVenta"]);
-                            producto.Descripciones = dataReader["Descripciones"].ToString();
+                    sqlConnection.Open();
 
-                            productos.Add(producto);
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        // Me aseguro que haya filas que leer
+                        if (dataReader.HasRows)
+                        {
+                            while (dataReader.Read())
+                            {
+                                Producto producto = new Producto();
+                                producto.Id = Convert.ToInt32(dataReader["Id"]);
+                                producto.Stock = Convert.ToInt32(dataReader["Stock"]);
+                                producto.IdUsuario = Convert.ToInt32(dataReader["IdUsuario"]);
+                                producto.Costo = Convert.ToInt32(dataReader["Costo"]);
+                                producto.PrecioVenta = Convert.ToInt32(dataReader["PrecioVenta"]);
+                                producto.Descripcion = dataReader["Descripciones"].ToString();
+
+                                productos.Add(producto);
+                            }
                         }
                     }
+
+                    sqlConnection.Close();
                 }
-
-                sqlConnection.Close();
             }
-        }
 
-        return productos;
+            return productos;
+        }
     }
+    
+}
 

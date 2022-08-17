@@ -1,4 +1,4 @@
-﻿namespace EjemploDeClase
+﻿namespace CoderHouse.ADO.NET
 {
     public class ProbarObjetos
     {
@@ -6,7 +6,13 @@
         {
             ProductoHandler productoHandler = new ProductoHandler();
 
-            productoHandler.AbrirConexionYCerrarConexion();
+            productoHandler.GetProductos();
+
+            UsuarioHandler usuarioHandler = new UsuarioHandler();
+
+            usuarioHandler.GetUsuarios();
+
+            Console.WriteLine(productoHandler.GetProductos);
         }
     }
 

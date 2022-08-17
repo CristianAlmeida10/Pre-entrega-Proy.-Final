@@ -8,13 +8,13 @@ using static CoderHouse.PropiedadesModelo;
 
 namespace CoderHouse.ADO.NET
 {
-    public class UsuarioHandler : DBHandler
+    public class UsuarioHandler : DbHandler
     {
-        public List<Usuario> GetUsuario()
+        public List<Usuario> GetUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
              using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
-            {
+             {
                 using (SqlCommand sqlCommand = new SqlCommand(
                     "SELECT * FROM Usuario", sqlConnection))
                 {
@@ -34,14 +34,14 @@ namespace CoderHouse.ADO.NET
                                 usuario.Nombre = dataReader["Nombre"].ToString();
                                 usuario.Apellido = dataReader["Apellido"].ToString();
                                 usuario.Contraseña = dataReader["Contraseña"].ToString();
-                                usuario.Mail = dataReader["Mail"].ToString();
+                                usuario.Email = dataReader["Mail"].ToString();
                             }
                         }
                     }
 
                     sqlConnection.Close();
                 }
-            }
+             }
 
             return usuarios;
         }

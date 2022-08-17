@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CoderHouse
 {
-    internal class PropiedadesModelo
+    public class PropiedadesModelo
     {
         public class Usuario
         {
             private int id;
             public int Id { get { return this.id; } set { this.id = value; } }
 
-            private string name;
-            public string Name { get { return this.name; } set { this.name = value; } }
+            private string nombre;
+            public string Nombre { get { return this.nombre; } set { this.nombre = value; } }
 
             private string apellido;
             public string Apellido { get { return this.apellido; } set { this.apellido = value; } }
@@ -43,11 +43,11 @@ namespace CoderHouse
             private double precioVenta;
             public double PrecioVenta { get { return this.precioVenta; } set { this.precioVenta = value; } }
 
-            private bool stock;
-            public bool Stock { get { return this.stock; } set { this.stock = value; } }
+            private int stock;
+            public int Stock { get { return this.stock; } set { this.stock = value; } }
 
-            private string idUsuario;
-            public string IdUsuario { get { return this.idUsuario; } set { this.idUsuario = value; } }
+            private int idUsuario;
+            public int IdUsuario { get { return this.idUsuario; } set { this.idUsuario = value; } }
         }
 
         public class ProductoVendido
